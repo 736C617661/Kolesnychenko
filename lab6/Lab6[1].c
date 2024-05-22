@@ -1,22 +1,31 @@
 #include <stdio.h>
 
 void main() {
-  int n, i, j;
+  int n, i, j, check;
+  char ch;
 
-  // Введення розміру матриці
   printf("Введіть розмір матриці (n x n): ");
-  scanf("%d", &n);
+  check = scanf("%d", &n);
+  ch = getchar();
 
-  // Створення матриці
+  if (check == 0 || ch != '\n') {
+    printf("Помилка: введіть число, а не літеру або число з літерами.\n");
+    return;
+  }
+
   int A[n][n];
   printf("Введіть елементи матриці:\n");
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
-      scanf("%d", &A[i][j]);
+      check = scanf("%d", &A[i][j]);
+      ch = getchar();
+      if (check == 0 || ch != '\n') {
+        printf("Помилка: введіть число, а не літеру або число з літерами.\n");
+        return;
+      }
     }
   }
 
-  // Перетворення матриці
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
       if (i + j == n - 1) {
@@ -27,7 +36,6 @@ void main() {
     }
   }
 
-  // Виведення перетвореної матриці
   printf("Перетворена матриця:\n");
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
